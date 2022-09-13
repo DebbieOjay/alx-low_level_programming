@@ -1,9 +1,12 @@
-#include "main.h"
+#includ "main.h"
 
 /**
  * _abs - Entry point
+ *
  * @n: n is an integer
+ *
  * Description: prints the absolute value of an integer
+ *
  * Return: int
  */
 
