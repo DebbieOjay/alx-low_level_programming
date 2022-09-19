@@ -20,3 +20,7 @@ Pointers, Arrays, & Strings
 8-print_array.c: function that prints n elements of an array of integers
 
 9-strcpy.c: function that copies the string pointed to by src, including the terminating null byte (\0)
+
+100-atoi.c: function that convert a string to an integer
+
+101-keygen.c: Create a program that generates random valid passwords for the program 101-crackme.
