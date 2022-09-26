@@ -28,7 +28,8 @@ unsigned int _strspn(char *s, char *accept)
 				count++;
 			}
 			j++;
-		}if (prev == count)
+		}
+		if (prev == count)
 		{
 			break;
 		}
