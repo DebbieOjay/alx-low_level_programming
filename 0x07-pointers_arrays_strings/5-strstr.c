@@ -4,6 +4,7 @@
  * _strstr - locates a substring
  * @haystack: string to search through
  * @needle: string to match
+ *
  * Return: pointer to initial segment of haystack
  */
 
@@ -28,5 +29,5 @@ char *_strstr(char *haystack, char *needle)
 		else
 			return (haystack + i);
 	}
-	return (0)
+	return (0);
 }
