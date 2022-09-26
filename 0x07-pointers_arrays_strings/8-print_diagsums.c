@@ -10,28 +10,19 @@
 
 void print_diagsums(int *a, int size)
 {
-	int i;
+	int i, j, p;
 	int bdiagsum = 0;
 	int fdiagsum = 0;
-	int prev = 0;
-
-	for (i = 0; i < size * size; i++)
-	{
-		if (i == 0)
-		{
-			bdiagsum += *(a + i);
-			prev = i;
-		}
-		else if (i == (prev + size + 1))
-		{
-			bdiagsum += *(a + i);
-			prev = i;
-		}
-	}
 
 	for (i = 0; i < size; i++)
 	{
-		fdiagsum += *(a + (size * (i + 1) - (i + 1)))
+		p = (i * size) + i;
+		l += *(a + p);
 	}
-	printf("%d, %d\n", bdiagsum, fdiagsum);
+	for (j = 0; j < size; j++)
+	{
+		p = (j * size) + (size - 1 - j);
+		r += *(a + p);
+	}
+	printf("%i, %i\n", bdiagsum, fdiagsum);
 }
