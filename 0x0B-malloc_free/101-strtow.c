@@ -9,81 +9,52 @@
  * Return: number of words
  */
 
-int number(char *str)
-{
-	int a, num = 0;
-
-	for (a = 0; str[a] != '\0'; a++)
-	{
-		if (*str == ' ')
-			str++;
-		else
-		{
-			for (; str[a] != ' ' && str[a] != '\0'; a++)
-				str++;
-			num++;
-		}
-	}
-	return (num);
-}
-/**
- * free_everything - frees the memory
- * @string: pointer values being passed for freeing
- * @i: counter
- */
-void free_everything(char **string, int i)
-{
-	for (; i > 0;)
-		free(string[--i]);
-	free(string);
-}
-
-/**
- * strtow - function that splits string into words
- * @str: string being passed
- * Return: null if string is empty or null or function fails
- */
-
 char **strtow(char *str)
 {
-	int total_words = 0, b = 0, c = 0, length = 0;
-	char **words, *found_word;
+	char **arr_words = NULL;
+	int i, j = 0, wlen, slen, words = 0, sig = 0, pre_sig = 0;
 
-	if (str == 0 || *str == 0)
+	if (str == NULL)
 		return (NULL);
-	total_words = number(str);
-	if (total_words == 0)
-		return (NULL);
-	words = malloc((total_words + 1) * sizeof(char *));
+	slen = strlen(str);
+	for (i = 0; i < slen; i++)
+	{
+		sig = (str[i] == 32 || str[i] == '\t') ? 0 : 1;
+		words = (pre_sig == 0 && sig == 1) ? words + 1 : words;
+		pre_sig = sig;
+	}
 	if (words == 0)
 		return (NULL);
-	for (; *str != '\0' &&  b < total_words;)
+	arr_words = malloc(words * sizeof(char *));
+	if (arr_words == NULL)
 	{
-		if (*str == ' ')
-			str++;
-		else
+		free(arr_words);
+		return (NULL);
+	}
+	words = 0;
+	for (i = 0; i < slen; i++)
+	{
+		sig = (str[i] == 32 || str[i] == 9) ? 0 : 1;
+		if (sig)
 		{
-			found_word = str;
-			for (; *str != ' ' && *str != '\0';)
+			for (j = 0; str[i + j] != 32 && str[i + j] != 9; j++)
+				;
+			wlen = j;
+			arr_words[words] = malloc(wlen * sizeof(char));
+			if (arr_words[words] == NULL)
 			{
-				length++;
-				str++;
-			}
-			words[b] = malloc((length + 1) * sizeof(char));
-			if (words[b] == 0)
-			{
-				free_everything(words, b);
+				for (; words >= 0; words--)
+					free(arr_words[words]);
+				free(arr_words);
 				return (NULL);
 			}
-			while (*found_word != ' ' && *found_word != '\0')
+			for (j = 0; j < wlen; j++)
 			{
-				words[b][c] = *found_word;
-				found_word++;
-				c++;
+				arr_words[words][j] = str[i + j];
 			}
-			words[b][c] = '\0';
-			b++; c = 0; length = 0; str++;
+			words++;
+			i += wlen - 1;
 		}
 	}
-	return (words);
+	return (arr_words);
 }
