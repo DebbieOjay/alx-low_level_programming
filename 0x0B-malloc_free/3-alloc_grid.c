@@ -11,14 +11,15 @@
 
 int **alloc_grid(int width, int height)
 {
+
 	int **iarray;
 	int i, n;
 
-	if (width <= 1 || height <= 1)
+	if (width < 1)
 		return (NULL);
-
-	iarray = malloc(sizeof(int) * height);
-
+	if (height < 1)
+		return (NULL);
+	iarray = malloc(sizeof(int *) * height);
 	if (iarray == 0)
 		return (NULL);
 
