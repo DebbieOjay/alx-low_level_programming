@@ -18,7 +18,7 @@ char **strtow(char *str)
 	if (str == NULL)
 		return (NULL);
 
-	for (i = 0; str[i] != '\0'; i++)
+	for (i = 0 ; str[i] != '\0' ; i++)
 	{
 		if (str[i] != 32)
 			con++;
@@ -29,7 +29,7 @@ char **strtow(char *str)
 	if (d == NULL)
 		return (NULL);
 
-	for (i = 0; str[i] != '\0'; i++)
+	for (i = 0 ; str[i] != '\0' ; i++)
 	{
 		if (str[i] != 32)
 		{
